@@ -20,8 +20,7 @@ const ContactForm = ({submit}) => {
         if (value === '') {
          setName(value); 
         }
-        if (!isValidLogin(value)) {
-          
+        if (!isValidLogin(value)) {          
 
           return;
         }

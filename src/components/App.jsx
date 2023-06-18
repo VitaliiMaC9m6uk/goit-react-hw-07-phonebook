@@ -3,13 +3,20 @@ import ListContacts from "./ListContacts/ListContacts";
 import Filter from "./Filter/Filter";
 import { useDispatch, useSelector } from 'react-redux';
 import { contactsSelector } from 'store/contacts/selectors';
-import { addContact } from 'store/contacts/contactsSlice';
+import { addContactThunk, getContactsThunk } from "store/contacts/contactsThunks";
+import { nanoid } from "@reduxjs/toolkit";
+import { useEffect } from "react";
+import Notiflix from 'notiflix';
 
 export const App = () => {
 
   const contacts = useSelector(contactsSelector);
   const dispatch = useDispatch();
-  
+
+  useEffect(() => {
+    dispatch(getContactsThunk());
+  }, [dispatch]);
+
   const hendleSubmit = e => {
     if (contacts) {
       const filterContacts = contacts.filter(
@@ -19,10 +26,15 @@ export const App = () => {
       );
       if (filterContacts.length > 0) {
         const sameNames = filterContacts.map(contact => contact.name);
-        return alert(`${sameNames} is already in contacts.`);
+        return Notiflix.Notify.failure(`${sameNames} is already in contacts.`);      
       }
-    }    
-    dispatch(addContact(e));        
+    }  
+    const newContact = {
+      name: e.name,
+      phone: e.number,
+      id:nanoid(),
+    }
+    dispatch(addContactThunk(newContact));        
   };
   
   return (

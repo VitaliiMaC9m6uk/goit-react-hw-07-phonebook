@@ -1,11 +1,12 @@
 import { useDispatch } from "react-redux";
-import { filterContact } from "store/contacts/contactsSlice";
+import { changeFilter } from "store/contacts/filterSlice";
+// import { changeFilter } from 'store/contacts/contactsSlice';
 
 
 const Filter = () => {  
   const dispatch = useDispatch();
   const hendleSaveFilter = (e) => {    
-    dispatch(filterContact(e.target.value));
+    dispatch(changeFilter(e.target.value));
   }
     return (
       <>

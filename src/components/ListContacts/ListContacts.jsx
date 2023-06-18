@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Contact, ContactsList } from "./ListContacts.styled";
 import { contactsSelector, filteredContactsSelector } from "store/contacts/selectors";
-import { deleteContactThunk } from 'store/contacts/contactsThunks';
+import { deleteContact } from 'store/contacts/contactsThunks';
 
 
 const ListContacts = () => {
@@ -11,7 +11,7 @@ const ListContacts = () => {
   
   const deleteClick = event => {
     const { id } = event.target;    
-    dispatch(deleteContactThunk(id));
+    dispatch(deleteContact(id));
   } 
   return (
     <ContactsList>

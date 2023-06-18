@@ -3,7 +3,7 @@ import ListContacts from "./ListContacts/ListContacts";
 import Filter from "./Filter/Filter";
 import { useDispatch, useSelector } from 'react-redux';
 import { contactsSelector } from 'store/contacts/selectors';
-import { addContactThunk, getContactsThunk } from "store/contacts/contactsThunks";
+import { addContact, fetchContacts } from 'store/contacts/contactsThunks';
 import { nanoid } from "@reduxjs/toolkit";
 import { useEffect } from "react";
 import Notiflix from 'notiflix';
@@ -14,7 +14,7 @@ export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getContactsThunk());
+    dispatch(fetchContacts());
   }, [dispatch]);
 
   const hendleSubmit = e => {
@@ -34,7 +34,7 @@ export const App = () => {
       phone: e.number,
       id:nanoid(),
     }
-    dispatch(addContactThunk(newContact));        
+    dispatch(addContact(newContact));        
   };
   
   return (
@@ -44,13 +44,8 @@ export const App = () => {
         submit={hendleSubmit}
       />
       <h2>Contacts</h2>
-      <Filter
-        // filter={hendleSaveFind}
-      />
-      <ListContacts
-        // list={hendleFilter()}
-        // deleteName={deleteContact}
-      />
+      <Filter/>
+      <ListContacts/>
     </div>
   );
 }

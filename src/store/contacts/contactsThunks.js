@@ -38,24 +38,3 @@ export const deleteContact = createAsyncThunk(
     }
   }
 );
-
-// export const getContactsThunk = createAsyncThunk(
-//     'contacts/getContacts',
-//     async () => {
-//         return await getContacts()
-//     }
-// )
-
-// export const postContactThunk = createAsyncThunk(
-//     'contacts/postContact',
-//     async (contact) => {
-//         return await postContact(contact)
-//     }
-// )
-
-// export const deleteContsctThunk = createAsyncThunk(
-//     'contacts/deleteContact',
-//     async (id) => {
-//         return await deleteContact(id)
-//     }
-// )
